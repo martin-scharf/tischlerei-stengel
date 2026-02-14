@@ -6,376 +6,181 @@
     <title>Tischlerei Stengel | Meisterhandwerk seit 1909 | Marburg</title>
     <meta name="description" content="Tischlerei Stengel in Marburg - Ihr Meisterbetrieb für Möbelbau, Innenausbau, Küchen nach Maß und Glaserei. Tradition seit 1909, jetzt in 4. Generation.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --color-cream: #F5F0E8;
-            --color-wood-light: #D4C4A8;
-            --color-wood: #8B7355;
-            --color-wood-dark: #5C4A3A;
-            --color-forest: #2D4A3E;
-            --color-forest-dark: #1A2F26;
-            --color-charcoal: #2C2C2C;
-            --color-warm-white: #FDFBF7;
-            --color-accent: #C4956A;
+            --cream: #FAF8F5;
+            --oak: #8B6914;
+            --oak-light: #C4A35A;
+            --walnut: #3D2914;
+            --walnut-light: #5C4023;
+            --sage: #4A5D4A;
+            --sage-dark: #2F3D2F;
+            --stone: #E8E4DE;
+            --charcoal: #1A1A1A;
             
-            --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'DM Sans', -apple-system, sans-serif;
-            
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 4rem;
-            --space-xl: 8rem;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Source Sans 3', system-ui, sans-serif;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         
         body {
-            font-family: var(--font-body);
-            background: var(--color-cream);
-            color: var(--color-charcoal);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            font-weight: 300;
         }
         
-        /* Grain overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1000;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
         
         /* Navigation */
-        .nav {
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            padding: var(--space-sm) var(--space-md);
-            transition: all 0.4s ease;
-        }
-        
-        .nav.scrolled {
-            background: rgba(245, 240, 232, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-        
-        .nav-inner {
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.4s ease;
         }
         
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--color-forest-dark);
+        header.scrolled {
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 4rem;
+            box-shadow: 0 2px 40px rgba(0,0,0,0.06);
+        }
+        
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--walnut);
             text-decoration: none;
             letter-spacing: -0.02em;
         }
         
-        .nav-logo span {
-            color: var(--color-accent);
-        }
-        
-        .nav-links {
+        nav {
             display: flex;
-            gap: var(--space-md);
-            list-style: none;
+            gap: 3rem;
+            align-items: center;
         }
         
-        .nav-links a {
-            color: var(--color-charcoal);
+        nav a {
+            color: var(--walnut-light);
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 500;
-            position: relative;
-            padding: 0.25rem 0;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            transition: color 0.3s;
         }
         
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--color-accent);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        nav a:hover { color: var(--oak); }
         
         .nav-cta {
-            background: var(--color-forest);
-            color: var(--color-warm-white) !important;
-            padding: 0.75rem 1.5rem !important;
-            border-radius: 2px;
+            background: var(--sage-dark);
+            color: var(--cream) !important;
+            padding: 0.8rem 1.8rem;
+            font-weight: 500;
         }
         
-        .nav-cta::after {
-            display: none !important;
-        }
+        .nav-cta:hover { background: var(--walnut); }
         
-        .nav-cta:hover {
-            background: var(--color-forest-dark);
-        }
-        
-        /* Mobile nav */
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .nav-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--color-charcoal);
-            margin: 5px 0;
-            transition: all 0.3s ease;
-        }
-        
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: var(--space-xl) var(--space-md);
-            background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-wood-light) 50%, var(--color-cream) 100%);
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(ellipse, var(--color-wood-light) 0%, transparent 70%);
-            opacity: 0.4;
-            animation: float 20s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-5%) rotate(2deg); }
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--cream);
         }
         
         .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 6rem;
         }
         
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--color-forest);
-            color: var(--color-warm-white);
-            padding: 0.5rem 1rem;
+        .hero-tag {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: var(--space-md);
-            animation: slideIn 0.8s ease forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            letter-spacing: 0.25em;
+            color: var(--oak);
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
         
         .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 5vw, 4.5rem);
             font-weight: 400;
-            line-height: 1;
-            color: var(--color-forest-dark);
-            margin-bottom: var(--space-md);
-            animation: slideIn 0.8s ease 0.2s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            line-height: 1.1;
+            color: var(--walnut);
+            margin-bottom: 2rem;
         }
         
         .hero h1 em {
             font-style: italic;
-            color: var(--color-accent);
+            color: var(--oak);
         }
         
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--color-wood-dark);
-            max-width: 500px;
-            margin-bottom: var(--space-lg);
-            animation: slideIn 0.8s ease 0.4s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+        .hero-text {
+            font-size: 1.15rem;
+            color: var(--walnut-light);
+            max-width: 480px;
+            margin-bottom: 3rem;
         }
         
         .hero-stats {
             display: flex;
-            gap: var(--space-lg);
-            animation: slideIn 0.8s ease 0.6s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            gap: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--stone);
         }
         
-        .stat {
-            text-align: left;
+        .stat h3 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--sage-dark);
         }
         
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            font-weight: 500;
-            color: var(--color-forest);
-            line-height: 1;
-        }
-        
-        .stat-label {
+        .stat p {
             font-size: 0.85rem;
-            color: var(--color-wood);
+            color: var(--walnut-light);
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
         
-        .hero-visual {
+        .hero-image {
             position: relative;
-            height: 600px;
-            animation: slideIn 1s ease 0.3s forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .hero-image-frame {
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            top: 10%;
-            left: 10%;
-            background: var(--color-forest-dark);
             overflow: hidden;
         }
         
-        .hero-image-frame::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(45deg, var(--color-wood-dark), var(--color-forest-dark));
-            opacity: 0.9;
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .hero-image-frame::after {
-            content: '🪵';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 6rem;
-            opacity: 0.3;
-        }
-        
-        .hero-accent-box {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            bottom: 0;
-            right: 0;
-            background: var(--color-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-md);
-        }
-        
-        .hero-accent-box p {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--color-warm-white);
-            text-align: center;
-            line-height: 1.4;
-        }
-        
-        /* Section Styles */
-        section {
-            padding: var(--space-xl) var(--space-md);
-        }
-        
-        .section-header {
-            max-width: 800px;
-            margin: 0 auto var(--space-lg);
-            text-align: center;
-        }
-        
-        .section-tag {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--color-accent);
-            margin-bottom: var(--space-sm);
-        }
-        
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
-            color: var(--color-forest-dark);
-            line-height: 1.1;
-        }
-        
-        .section-title em {
-            font-style: italic;
-            color: var(--color-accent);
-        }
-        
-        /* About Section */
+        /* About */
         .about {
-            background: var(--color-warm-white);
-            position: relative;
+            padding: 10rem 4rem;
+            background: var(--stone);
         }
         
         .about-grid {
@@ -383,125 +188,105 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
+            gap: 6rem;
             align-items: center;
         }
         
-        .about-content h3 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--color-forest-dark);
-            margin-bottom: var(--space-md);
+        .about-images {
+            position: relative;
+            height: 600px;
+        }
+        
+        .about-img-1 {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .about-img-2 {
+            position: absolute;
+            width: 55%;
+            height: 50%;
+            bottom: 0;
+            right: 0;
+            object-fit: cover;
+            border: 8px solid var(--cream);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .about-content h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--walnut);
+            margin-bottom: 2rem;
+            line-height: 1.2;
         }
         
         .about-content p {
-            color: var(--color-wood-dark);
-            margin-bottom: var(--space-sm);
-            font-size: 1.05rem;
+            color: var(--walnut-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
         
-        .about-timeline {
+        .timeline {
+            margin-top: 3rem;
             display: flex;
             flex-direction: column;
-            gap: var(--space-md);
-            margin-top: var(--space-lg);
+            gap: 1.5rem;
         }
         
         .timeline-item {
             display: flex;
-            gap: var(--space-md);
-            align-items: flex-start;
+            gap: 2rem;
+            align-items: baseline;
         }
         
         .timeline-year {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 500;
-            color: var(--color-accent);
-            min-width: 120px;
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--oak);
+            min-width: 100px;
         }
         
         .timeline-text h4 {
-            font-size: 1.1rem;
-            color: var(--color-forest-dark);
+            font-weight: 500;
+            color: var(--walnut);
             margin-bottom: 0.25rem;
         }
         
         .timeline-text p {
             font-size: 0.95rem;
-            color: var(--color-wood);
+            color: var(--walnut-light);
             margin-bottom: 0;
         }
         
-        .about-visual {
-            position: relative;
-            height: 500px;
-        }
-        
-        .about-image-main {
-            position: absolute;
-            width: 70%;
-            height: 80%;
-            background: var(--color-forest);
-            top: 0;
-            right: 0;
-        }
-        
-        .about-image-main::after {
-            content: '🔨';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            opacity: 0.3;
-        }
-        
-        .about-image-secondary {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            background: var(--color-wood-light);
-            bottom: 0;
-            left: 0;
-            border: 8px solid var(--color-warm-white);
-        }
-        
-        .about-image-secondary::after {
-            content: '🪚';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            opacity: 0.4;
-        }
-        
-        /* Services Section */
+        /* Services */
         .services {
-            background: var(--color-forest-dark);
-            color: var(--color-warm-white);
-            position: relative;
-            overflow: hidden;
+            padding: 10rem 4rem;
+            background: var(--walnut);
         }
         
-        .services::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%23ffffff' fill-opacity='0.02'/%3E%3C/svg%3E");
-            pointer-events: none;
+        .services-header {
+            max-width: 600px;
+            margin-bottom: 5rem;
         }
         
-        .services .section-title {
-            color: var(--color-warm-white);
+        .services-header h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
         }
         
-        .services .section-tag {
-            color: var(--color-accent);
+        .services-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
         }
         
         .services-grid {
@@ -509,240 +294,153 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-md);
+            gap: 2rem;
         }
         
         .service-card {
-            background: rgba(255,255,255,0.03);
-            padding: var(--space-lg);
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.4s ease;
             position: relative;
+            aspect-ratio: 4/5;
             overflow: hidden;
+            cursor: pointer;
         }
         
-        .service-card::before {
+        .service-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .service-card::after {
             content: '';
             position: absolute;
-            top: 0;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.3) 50%, transparent 100%);
+        }
+        
+        .service-info {
+            position: absolute;
+            bottom: 0;
             left: 0;
-            width: 4px;
-            height: 0;
-            background: var(--color-accent);
-            transition: height 0.4s ease;
+            right: 0;
+            padding: 2.5rem;
+            z-index: 1;
+            color: var(--cream);
         }
         
-        .service-card:hover {
-            background: rgba(255,255,255,0.06);
-            transform: translateY(-5px);
+        .service-info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
         }
         
-        .service-card:hover::before {
+        .service-info p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* Gallery */
+        .gallery {
+            padding: 10rem 4rem;
+            background: var(--cream);
+        }
+        
+        .gallery-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+        
+        .gallery-header h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--walnut);
+            margin-bottom: 1.5rem;
+        }
+        
+        .gallery-header p {
+            color: var(--walnut-light);
+            font-size: 1.1rem;
+        }
+        
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .gallery-item img {
+            width: 100%;
             height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
         
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-md);
+        .gallery-item:hover img {
+            transform: scale(1.03);
         }
         
-        .service-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: var(--space-sm);
-            color: var(--color-warm-white);
+        /* Values */
+        .values {
+            padding: 8rem 4rem;
+            background: var(--sage-dark);
         }
         
-        .service-card p {
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+        
+        .value-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+        
+        .value-item p {
             color: rgba(255,255,255,0.7);
             font-size: 0.95rem;
             line-height: 1.7;
         }
         
-        /* Team Section */
-        .team {
-            background: var(--color-cream);
-        }
-        
-        .team-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-lg);
-        }
-        
-        .team-member {
-            text-align: center;
-        }
-        
-        .team-photo {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto var(--space-md);
-            background: var(--color-forest);
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            border: 4px solid var(--color-wood-light);
-        }
-        
-        .team-photo::after {
-            content: '👤';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .value-number {
+            font-family: var(--font-serif);
             font-size: 4rem;
+            color: var(--oak-light);
             opacity: 0.4;
+            margin-bottom: 1rem;
         }
         
-        .team-member h3 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--color-forest-dark);
-            margin-bottom: 0.25rem;
-        }
-        
-        .team-member .role {
-            color: var(--color-accent);
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .team-member p {
-            color: var(--color-wood);
-            font-size: 0.95rem;
-        }
-        
-        /* Projects Section */
-        .projects {
-            background: var(--color-warm-white);
-            overflow: hidden;
-        }
-        
-        .projects-showcase {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-sm);
-        }
-        
-        .project-item {
-            aspect-ratio: 1;
-            background: var(--color-wood-light);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        
-        .project-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-        
-        .project-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(26, 47, 38, 0.9) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .project-item:hover::before {
-            opacity: 1;
-        }
-        
-        .project-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: var(--space-md);
-            color: var(--color-warm-white);
-            transform: translateY(100%);
-            transition: transform 0.4s ease;
-        }
-        
-        .project-item:hover .project-content {
-            transform: translateY(0);
-        }
-        
-        .project-content h4 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .project-content span {
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-        
-        .project-placeholder {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            opacity: 0.3;
-        }
-        
-        .project-item:nth-child(1) .project-placeholder { font-size: 5rem; }
-        
-        /* USP Section */
-        .usp {
-            background: linear-gradient(135deg, var(--color-wood-light) 0%, var(--color-cream) 100%);
-            text-align: center;
-        }
-        
-        .usp-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-lg);
-        }
-        
-        .usp-item {
-            padding: var(--space-md);
-        }
-        
-        .usp-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto var(--space-md);
-            background: var(--color-forest);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-        
-        .usp-item h4 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            color: var(--color-forest-dark);
-            margin-bottom: 0.5rem;
-        }
-        
-        .usp-item p {
-            color: var(--color-wood);
-            font-size: 0.9rem;
-        }
-        
-        /* Contact Section */
+        /* Contact */
         .contact {
-            background: var(--color-forest-dark);
-            color: var(--color-warm-white);
-        }
-        
-        .contact .section-title {
-            color: var(--color-warm-white);
+            padding: 10rem 4rem;
+            background: var(--cream);
         }
         
         .contact-grid {
@@ -750,713 +448,318 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: var(--space-xl);
+            gap: 6rem;
         }
         
-        .contact-info h3 {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            margin-bottom: var(--space-md);
+        .contact-content h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--walnut);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-content > p {
+            color: var(--walnut-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 450px;
         }
         
         .contact-details {
-            margin-bottom: var(--space-lg);
-        }
-        
-        .contact-item {
             display: flex;
-            align-items: flex-start;
-            gap: var(--space-sm);
-            margin-bottom: var(--space-md);
+            flex-direction: column;
+            gap: 2rem;
         }
         
-        .contact-item-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
+        .contact-item h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--oak);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .contact-item p, .contact-item a {
+            color: var(--walnut);
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            color: var(--oak);
+        }
+        
+        .contact-map {
+            background: var(--stone);
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            min-height: 400px;
         }
         
-        .contact-item-text h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-accent);
-            margin-bottom: 0.25rem;
-        }
-        
-        .contact-item-text p {
-            color: rgba(255,255,255,0.9);
-        }
-        
-        .contact-item-text a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-item-text a:hover {
-            color: var(--color-accent);
-        }
-        
-        .opening-hours {
-            background: rgba(255,255,255,0.05);
-            padding: var(--space-md);
-            border-left: 3px solid var(--color-accent);
-        }
-        
-        .opening-hours h4 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            margin-bottom: var(--space-sm);
-        }
-        
-        .opening-hours p {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.95rem;
-        }
-        
-        .contact-form {
-            background: rgba(255,255,255,0.03);
-            padding: var(--space-lg);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .form-group {
-            margin-bottom: var(--space-md);
-        }
-        
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-accent);
-            margin-bottom: 0.5rem;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--color-warm-white);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--color-accent);
-            background: rgba(255,255,255,0.08);
-        }
-        
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .btn-submit {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: var(--color-accent);
-            color: var(--color-warm-white);
-            border: none;
-            font-family: var(--font-body);
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-submit:hover {
-            background: var(--color-wood);
-            transform: translateY(-2px);
-        }
-        
-        /* Map Section */
-        .map {
-            height: 400px;
-            background: var(--color-wood-light);
-            position: relative;
-        }
-        
-        .map iframe {
+        .contact-map img {
             width: 100%;
             height: 100%;
-            border: none;
-            filter: grayscale(30%) contrast(1.1);
+            object-fit: cover;
         }
         
         /* Footer */
-        .footer {
-            background: var(--color-charcoal);
-            color: rgba(255,255,255,0.7);
-            padding: var(--space-lg) var(--space-md);
+        footer {
+            padding: 4rem;
+            background: var(--walnut);
+            text-align: center;
         }
         
-        .footer-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--space-md);
-        }
-        
-        .footer-logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--color-warm-white);
-        }
-        
-        .footer-logo span {
-            color: var(--color-accent);
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: var(--space-md);
-        }
-        
-        .footer-links a {
+        footer p {
             color: rgba(255,255,255,0.6);
-            text-decoration: none;
             font-size: 0.9rem;
-            transition: color 0.3s ease;
         }
         
-        .footer-links a:hover {
-            color: var(--color-accent);
-        }
-        
-        .footer-copy {
-            font-size: 0.85rem;
+        footer a {
+            color: var(--oak-light);
+            text-decoration: none;
         }
         
         /* Responsive */
         @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-            
-            .hero-visual {
-                height: 400px;
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .projects-showcase {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .usp-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .hero { grid-template-columns: 1fr; }
+            .hero-content { padding: 10rem 3rem 4rem; }
+            .hero-image { height: 50vh; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .about-images { height: 400px; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+            .values-grid { grid-template-columns: 1fr 1fr; }
+            header { padding: 1rem 2rem; }
+            nav { gap: 1.5rem; }
         }
         
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .nav-toggle {
-                display: block;
-            }
-            
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--color-cream);
-                padding: var(--space-md);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            }
-            
-            .hero-stats {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-visual {
-                height: 300px;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-showcase {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-item:nth-child(1) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-            
-            .usp-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
+        @media (max-width: 640px) {
+            .hero-content { padding: 8rem 1.5rem 3rem; }
+            .hero-stats { flex-direction: column; gap: 2rem; }
+            .about, .services, .gallery, .contact { padding: 5rem 1.5rem; }
+            .services-grid, .gallery-grid, .values-grid { grid-template-columns: 1fr; }
+            .gallery-item:nth-child(1) { grid-column: span 1; }
+            nav a:not(.nav-cta) { display: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">Stengel<span>.</span></a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">Über uns</a></li>
-                <li><a href="#services">Leistungen</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#projects">Referenzen</a></li>
-                <li><a href="#contact" class="nav-cta">Kontakt</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
+    <header>
+        <a href="#" class="logo">Tischlerei Stengel</a>
+        <nav>
+            <a href="#about">Geschichte</a>
+            <a href="#services">Leistungen</a>
+            <a href="#gallery">Referenzen</a>
+            <a href="#contact" class="nav-cta">Kontakt</a>
+        </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero">
         <div class="hero-content">
-            <div class="hero-text">
-                <div class="hero-badge">
-                    <span>✦</span> Meisterbetrieb seit 1909
+            <span class="hero-tag">Meisterbetrieb seit 1909</span>
+            <h1>Handwerk mit <em>Charakter</em></h1>
+            <p class="hero-text">Wir fertigen Möbel und Innenausbauten, die Generationen überdauern. In unserer Werkstatt verbinden wir traditionelles Handwerk mit zeitgemäßem Design.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>115+</h3>
+                    <p>Jahre Erfahrung</p>
                 </div>
-                <h1>Holz mit <em>Seele</em></h1>
-                <p class="hero-subtitle">
-                    Vier Generationen Handwerkskunst. Wir fertigen individuelle Möbel und Einrichtungen, 
-                    die Ihre Räume zu einem Zuhause machen.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">115+</div>
-                        <div class="stat-label">Jahre Tradition</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">4.</div>
-                        <div class="stat-label">Generation</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Meister im Team</div>
-                    </div>
+                <div class="stat">
+                    <h3>4.</h3>
+                    <p>Generation</p>
+                </div>
+                <div class="stat">
+                    <h3>3</h3>
+                    <p>Meister im Team</p>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-image-frame"></div>
-                <div class="hero-accent-box">
-                    <p>„Ehrliches Handwerk mit Liebe zum Detail"</p>
-                </div>
-            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=1400&fit=crop" alt="Tischlerhandwerk - Holzbearbeitung">
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
-        <div class="section-header">
-            <p class="section-tag">Unsere Geschichte</p>
-            <h2 class="section-title">Tradition trifft <em>Innovation</em></h2>
-        </div>
         <div class="about-grid">
+            <div class="about-images">
+                <img class="about-img-1" src="https://images.unsplash.com/photo-1611596981815-61e279bb5db4?w=800&h=900&fit=crop" alt="Tischlerwerkstatt">
+                <img class="about-img-2" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=500&fit=crop" alt="Holzarbeit Detail">
+            </div>
             <div class="about-content">
-                <h3>Ein Familienbetrieb mit Herz</h3>
-                <p>
-                    Unsere Tischlerei zeichnet sich durch Tradition und ehrliches Handwerk aus. 
-                    Mit viel Liebe zum Detail und sauberer Handwerksarbeit fertigen wir Ihre 
-                    Wunsch-Möbel und Einrichtungsgegenstände an.
-                </p>
-                <p>
-                    Wir stellen uns genau auf Ihre Anforderungen ein und beraten Sie umfassend – 
-                    vom Werkstoff bis zur handwerklichen Umsetzung.
-                </p>
+                <h2>Vier Generationen Leidenschaft für Holz</h2>
+                <p>Was 1909 als kleine Werkstatt in Marburg begann, ist heute ein moderner Meisterbetrieb mit Tradition. Wir vereinen klassisches Tischlerhandwerk mit den Möglichkeiten zeitgemäßer Fertigung.</p>
+                <p>Als einer der wenigen Betriebe in der Region führen wir sowohl Tischlerei als auch Glaserei unter einem Dach – für Lösungen aus einer Hand.</p>
                 
-                <div class="about-timeline">
+                <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-year">1909</div>
+                        <span class="timeline-year">1909</span>
                         <div class="timeline-text">
                             <h4>Gründung</h4>
-                            <p>Friedrich Rohleder gründet den Betrieb in Marburg</p>
+                            <p>Friedrich Rohleder gründet die Werkstatt</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">2011</div>
+                        <span class="timeline-year">2011</span>
                         <div class="timeline-text">
-                            <h4>4. Generation</h4>
-                            <p>Frank Stengel übernimmt die Geschäftsführung</p>
+                            <h4>Neue Führung</h4>
+                            <p>Frank Stengel übernimmt in 4. Generation</p>
                         </div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-year">Heute</div>
+                        <span class="timeline-year">Heute</span>
                         <div class="timeline-text">
-                            <h4>Meisterbetrieb</h4>
-                            <p>3 Meister, Ausbildungsbetrieb, Innungsmitglied</p>
+                            <h4>Tradition & Innovation</h4>
+                            <p>Drei Meister, ein Anspruch: Qualität</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="about-visual">
-                <div class="about-image-main"></div>
-                <div class="about-image-secondary"></div>
-            </div>
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services" id="services">
-        <div class="section-header">
-            <p class="section-tag">Was wir tun</p>
-            <h2 class="section-title">Unsere <em>Leistungen</em></h2>
+        <div class="services-header">
+            <h2>Was wir für Sie fertigen</h2>
+            <p>Von der ersten Skizze bis zur Montage – alles aus Meisterhand</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">🪑</div>
-                <h3>Möbelfertigung</h3>
-                <p>Individuelle Möbel nach Maß – von der Idee bis zur Realisierung. 
-                   Jedes Stück ein Unikat, perfekt auf Ihre Räume abgestimmt.</p>
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=750&fit=crop" alt="Möbelbau">
+                <div class="service-info">
+                    <h3>Möbel nach Maß</h3>
+                    <p>Einzelstücke, die perfekt in Ihr Zuhause passen. Vom Entwurf bis zur Fertigung.</p>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🍳</div>
-                <h3>Küchen nach Maß</h3>
-                <p>Das Herzstück Ihres Zuhauses, individuell geplant und fachmännisch 
-                   umgesetzt. Funktional und schön zugleich.</p>
+                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=750&fit=crop" alt="Küchen">
+                <div class="service-info">
+                    <h3>Küchen</h3>
+                    <p>Individuelle Küchenplanung und -fertigung. Funktional und ästhetisch.</p>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🏠</div>
-                <h3>Innenausbau</h3>
-                <p>Komplettlösungen für Ihr Zuhause – von Wandverkleidungen über 
-                   Einbauschränke bis zur kompletten Raumgestaltung.</p>
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=750&fit=crop" alt="Innenausbau">
+                <div class="service-info">
+                    <h3>Innenausbau</h3>
+                    <p>Wandverkleidungen, Decken, Böden. Räume mit Charakter gestalten.</p>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🪟</div>
-                <h3>Glaserei</h3>
-                <p>Als kombinierter Tischlerei- und Glasereibetrieb bieten wir alles 
-                   aus einer Hand – Fenster, Türen, Ganzglasanlagen.</p>
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=750&fit=crop" alt="Glaserei">
+                <div class="service-info">
+                    <h3>Glaserei</h3>
+                    <p>Glas und Holz in perfekter Verbindung. Ein seltenes Handwerk.</p>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🏛️</div>
-                <h3>Restauration</h3>
-                <p>Behutsame Restaurierung antiker Möbel und denkmalgerechte Arbeiten 
-                   mit Respekt vor Geschichte und Material.</p>
+                <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=750&fit=crop" alt="Restauration">
+                <div class="service-info">
+                    <h3>Restauration</h3>
+                    <p>Wir hauchen antiken Möbeln neues Leben ein. Behutsam und fachgerecht.</p>
+                </div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔧</div>
-                <h3>Renovierung</h3>
-                <p>Von kleinen Reparaturen bis zu größeren Renovierungen – wir bessern 
-                   aus, erneuern und setzen instand.</p>
+                <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=750&fit=crop" alt="Fenster und Türen">
+                <div class="service-info">
+                    <h3>Fenster & Türen</h3>
+                    <p>Maßgefertigte Lösungen aus Holz. Langlebig und energieeffizient.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team" id="team">
-        <div class="section-header">
-            <p class="section-tag">Die Menschen dahinter</p>
-            <h2 class="section-title">Unser <em>Team</em></h2>
+    <section class="gallery" id="gallery">
+        <div class="gallery-header">
+            <h2>Einblicke in unsere Arbeit</h2>
+            <p>Jedes Projekt erzählt seine eigene Geschichte. Hier einige Impressionen aus unserer Werkstatt und von unseren Kunden.</p>
         </div>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="team-photo"></div>
-                <h3>Frank Stengel</h3>
-                <p class="role">Tischlermeister & Inhaber</p>
-                <p>Leitet den Betrieb in 4. Generation mit Leidenschaft und Weitblick.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1000&h=1200&fit=crop" alt="Wohnzimmer Einrichtung">
             </div>
-            <div class="team-member">
-                <div class="team-photo"></div>
-                <h3>Rolf Weigand</h3>
-                <p class="role">Tischler- & Glasermeister</p>
-                <p>Doppelte Expertise für Projekte, die Holz und Glas vereinen.</p>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=500&h=400&fit=crop" alt="Holzdetail">
             </div>
-            <div class="team-member">
-                <div class="team-photo"></div>
-                <h3>Peter Krauss</h3>
-                <p class="role">Tischlermeister</p>
-                <p>Bringt jahrzehntelange Erfahrung in jedes Projekt ein.</p>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d?w=500&h=400&fit=crop" alt="Werkstatt">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&h=400&fit=crop" alt="Modernes Wohnen">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=500&h=400&fit=crop" alt="Schlafzimmer">
             </div>
         </div>
     </section>
 
-    <!-- USP Section -->
-    <section class="usp">
-        <div class="section-header">
-            <p class="section-tag">Warum wir</p>
-            <h2 class="section-title">Das macht uns <em>besonders</em></h2>
-        </div>
-        <div class="usp-grid">
-            <div class="usp-item">
-                <div class="usp-icon">🏆</div>
-                <h4>Meisterbetrieb</h4>
-                <p>Drei Meister garantieren höchste Qualität bei jedem Projekt.</p>
+    <section class="values">
+        <div class="values-grid">
+            <div class="value-item">
+                <div class="value-number">01</div>
+                <h4>Meisterqualität</h4>
+                <p>Drei Tischlermeister garantieren höchste Handwerkskunst bei jedem Projekt.</p>
             </div>
-            <div class="usp-item">
-                <div class="usp-icon">🤝</div>
+            <div class="value-item">
+                <div class="value-number">02</div>
                 <h4>Alles aus einer Hand</h4>
-                <p>Tischlerei und Glaserei vereint – keine Koordination nötig.</p>
+                <p>Tischlerei und Glaserei vereint – für durchdachte Komplettlösungen.</p>
             </div>
-            <div class="usp-item">
-                <div class="usp-icon">📍</div>
+            <div class="value-item">
+                <div class="value-number">03</div>
                 <h4>Regional verwurzelt</h4>
-                <p>Zentral in Marburg, für kurze Wege und persönlichen Service.</p>
+                <p>Seit 1909 in Marburg. Wir kennen die Region und ihre Menschen.</p>
             </div>
-            <div class="usp-item">
-                <div class="usp-icon">🌱</div>
-                <h4>Nachhaltig</h4>
-                <p>Ökologisch einwandfreie Materialien und langlebige Qualität.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="section-header">
-            <p class="section-tag">Unsere Arbeiten</p>
-            <h2 class="section-title">Ausgewählte <em>Referenzen</em></h2>
-        </div>
-        <div class="projects-showcase">
-            <div class="project-item">
-                <span class="project-placeholder">🏠</span>
-                <div class="project-content">
-                    <h4>Kompletter Innenausbau</h4>
-                    <span>Privathaus Marburg</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span class="project-placeholder">🪑</span>
-                <div class="project-content">
-                    <h4>Einbaumöbel</h4>
-                    <span>Maßanfertigung</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span class="project-placeholder">🍳</span>
-                <div class="project-content">
-                    <h4>Küche nach Maß</h4>
-                    <span>Eiche massiv</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span class="project-placeholder">🪟</span>
-                <div class="project-content">
-                    <h4>Glasarbeiten</h4>
-                    <span>Ganzglasanlage</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span class="project-placeholder">🏛️</span>
-                <div class="project-content">
-                    <h4>Restaurierung</h4>
-                    <span>Historisches Mobiliar</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <span class="project-placeholder">🚪</span>
-                <div class="project-content">
-                    <h4>Haustüren</h4>
-                    <span>Handgefertigt</span>
-                </div>
+            <div class="value-item">
+                <div class="value-number">04</div>
+                <h4>Nachhaltig gefertigt</h4>
+                <p>Holz aus verantwortungsvoller Forstwirtschaft. Möbel für Generationen.</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
-        <div class="section-header">
-            <p class="section-tag">Sprechen Sie uns an</p>
-            <h2 class="section-title">Kontakt <em>aufnehmen</em></h2>
-        </div>
         <div class="contact-grid">
-            <div class="contact-info">
-                <h3>Besuchen Sie uns</h3>
+            <div class="contact-content">
+                <h2>Lassen Sie uns sprechen</h2>
+                <p>Sie haben ein Projekt im Kopf? Wir beraten Sie gerne – unverbindlich und persönlich.</p>
+                
                 <div class="contact-details">
                     <div class="contact-item">
-                        <div class="contact-item-icon">📍</div>
-                        <div class="contact-item-text">
-                            <h4>Adresse</h4>
-                            <p>Leopold-Lucas-Str. 23<br>35037 Marburg</p>
-                        </div>
+                        <h4>Adresse</h4>
+                        <p>Leopold-Lucas-Straße 23<br>35037 Marburg</p>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-item-icon">📞</div>
-                        <div class="contact-item-text">
-                            <h4>Telefon</h4>
-                            <p><a href="tel:+4964213316">+49 (0) 64 21 / 3 31 63</a></p>
-                        </div>
+                        <h4>Telefon</h4>
+                        <a href="tel:+4964213316">+49 (0) 6421 / 3 31 63</a>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-item-icon">📠</div>
-                        <div class="contact-item-text">
-                            <h4>Fax</h4>
-                            <p>+49 (0) 64 21 / 3 61 57</p>
-                        </div>
+                        <h4>E-Mail</h4>
+                        <a href="mailto:info@stengel-tischlerei.de">info@stengel-tischlerei.de</a>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-item-icon">✉️</div>
-                        <div class="contact-item-text">
-                            <h4>E-Mail</h4>
-                            <p><a href="mailto:info@stengel-tischlerei.de">info@stengel-tischlerei.de</a></p>
-                        </div>
+                        <h4>Öffnungszeiten</h4>
+                        <p>Mo – Fr: 7:30 – 17:00 Uhr<br>Termine nach Vereinbarung</p>
                     </div>
-                </div>
-                <div class="opening-hours">
-                    <h4>Öffnungszeiten</h4>
-                    <p>Montag – Freitag: 7:30 – 17:00 Uhr<br>
-                       Termine nach Vereinbarung</p>
                 </div>
             </div>
-            <div class="contact-form">
-                <form action="https://formspree.io/f/placeholder" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Telefon</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Ihre Nachricht</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Nachricht senden</button>
-                </form>
+            <div class="contact-map">
+                <img src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=800&h=600&fit=crop" alt="Werkstatt Außenansicht">
             </div>
         </div>
     </section>
 
-    <!-- Map -->
-    <div class="map">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2533.7384736584!2d8.7631!3d50.8102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bc5e5f5c0d5b5f%3A0x5b5f5c0d5b5f5c0d!2sLeopold-Lucas-Stra%C3%9Fe%2023%2C%2035037%20Marburg!5e0!3m2!1sde!2sde!4v1234567890"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Standort Tischlerei Stengel">
-        </iframe>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-logo">Stengel<span>.</span></div>
-            <div class="footer-links">
-                <a href="#about">Über uns</a>
-                <a href="#services">Leistungen</a>
-                <a href="#contact">Kontakt</a>
-                <a href="https://www.stengel-tischlerei.de/impressum/" target="_blank">Impressum</a>
-                <a href="https://www.stengel-tischlerei.de/impressum/" target="_blank">Datenschutz</a>
-            </div>
-            <p class="footer-copy">© 2024 Tischlerei Stengel. Alle Rechte vorbehalten.</p>
-        </div>
+    <footer>
+        <p>© 2024 Tischlerei Stengel · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
     </footer>
 
     <script>
-        // Navigation scroll effect
-        const nav = document.getElementById('nav');
+        // Scroll header effect
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile navigation toggle
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile nav on link click
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.service-card, .team-member, .usp-item, .project-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
         });
     </script>
 </body>
